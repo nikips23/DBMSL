@@ -1,0 +1,58 @@
+Q1
+ CREATE TABLE `student`(
+student_id INT AUTO_INCREMENT, first_name VARCHAR(20),
+last_name VARCHAR(20), age INT,
+grade VARCHAR(1), major VARCHAR(20),PRIMARY KEY(`student_id`));
+
+INSERT INTO student VALUES
+    (1,"John", "Doe", 20, "A", "Computer Science"),
+    (2,"Jane", "Smith", 21, "B", "Mathematics"),
+    (3,"Alex", "Johnson", 22, "A", "Physics"),
+    (4,"Emily", "Davis", 23, "C", "Biology"),
+    (5,"David", "Duck", 21, "B", "Mathematics"),
+    (6, "Don", "Dev", 22, "A", "Mathematics");
+
+
+ i - SELECT * FROM student;
+ ii - UPDATE student SET first_name = "Jenne" WHERE student_id=2;
+ iii - SELECT * FROM student WHERE grade = "A";
+ iv - SELECT major, COUNT(*) AS StudentsinMajor FROM student GROUP BY major;
+ v -  SELECT * FROM student ORDER BY age ;
+ vi - SELECT * FROM student WHERE age = (SELECT MIN(age) FROM student);
+ vii - UPDATE student SET major = "nothing" WHERE student_id =2;
+ viii - DELETE FROM student WHERE student_id = 6;
+ ix - SELECT major, COUNT(*) FROM student WHERE grade = "A" GROUP BY major ;
+ x -  SELECT grade, COUNT(*) AS cnt FROM student GROUP BY grade HAVING cnt > 2;
+
+----------
+JOINS:
+
+ SELECT * FROM Student S
+    INNER JOIN Course C
+    ON S.CourseID = C.CourseID;
+
+ SELECT * FROM Student
+    LEFT JOIN Course C
+    ON S.CourseID = C.CourseID;
+
+ SELECT * FROM Student S
+    RIGHT JOIN Course C
+    ON S.CourseID = C.CourseID;
+
+SELECT * FROM Student S
+    LEFT JOIN Course C ON S.CourseID = C.CourseID
+    UNION
+    SELECT * FROM Student S
+    RIGHT JOIN Course C ON S.CourseID = C.CourseID
+    WHERE S.StudentID IS NULL;
+
+TRIGGERS:
+
+CREATE TRIGGER triggername
+    BEFORE / AFTER DELETE / UPDATE / INSERT
+    ON Tablename
+    FOR EACH ROW
+    INSERT INTO del VALUES
+    (OLD.RollNo, OLD.Name, OLD.Address, OLD.Marks);
+
+

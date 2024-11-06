@@ -1,0 +1,20 @@
+use dbname;
+// use creates as well as uses new database
+
+// Create a new collection and insert a document
+db.mycollection.insertOne({ name: "John", age: 30, city: "New York" });
+
+// Read the document
+db.mycollection.find({ name: "John" });
+
+// Update the document
+db.mycollection.updateOne({ name: "John" }, { $set: { age: 31 } });
+
+// Delete the document
+db.mycollection.deleteOne({ name: "John" });
+
+// Save method (insert if not exists, update if exists)
+db.mycollection.save({ _id: ObjectId("someObjectId"), name: "John", age: 32, city: "New York" });
+
+// Using logical operators
+db.mycollection.find({ $or: [{ age: { $gt: 25 } }, { city: "New York" }] });
